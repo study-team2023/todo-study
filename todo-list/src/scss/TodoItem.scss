@@ -39,6 +39,18 @@
         color: #000;
       }
     }
+    .edit {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      color: #7c6bff;
+      cursor: pointer;
+      margin-right: 12px;
+      transition: .2s;
+      &:hover {
+        color: #000;
+      }
+    }
   
     & + & {
       border-top: 1px solid #dee2e6;
