@@ -1,6 +1,6 @@
 import {MdAdd} from "react-icons/md";
 import "../scss/TodoInsert.scss";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 const TodoInsert = ({ onInsert }) => {
     const [value, setValue] = useState("");
@@ -17,10 +17,15 @@ const TodoInsert = ({ onInsert }) => {
         e.preventDefault();
     }, [onInsert, value]);
 
+    const todoInputFocus = useRef();
+    useEffect(() => {
+        todoInputFocus.current.focus();
+    }, []);
+
     return (
         <>
         <form className="TodoInsert" onSubmit={onInputSubmit}>
-            <input placeholder="할 일을 입력하세요" value={value} onChange={onInputChange} />
+            <input placeholder="할 일을 입력하세요" ref={todoInputFocus} value={value} onChange={onInputChange} />
             <button type="submit">
                 <MdAdd/>
             </button>
