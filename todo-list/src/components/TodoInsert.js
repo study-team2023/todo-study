@@ -1,5 +1,5 @@
 import {MdAdd} from "react-icons/md";
-import "../scss/TodoInsert.scss";
+import style from "../css/TodoInsert.module.css";
 import { useState, useCallback, useRef, useEffect } from "react";
 
 const TodoInsert = ({ onInsert }) => {
@@ -24,7 +24,7 @@ const TodoInsert = ({ onInsert }) => {
 
     return (
         <>
-        <form className="TodoInsert" onSubmit={onInputSubmit}>
+        <form className={style.TodoInsert} onSubmit={onInputSubmit}>
             <input placeholder="할 일을 입력하세요" ref={todoInputFocus} value={value} onChange={onInputChange} />
             <button type="submit">
                 <MdAdd/>

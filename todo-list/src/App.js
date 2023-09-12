@@ -1,5 +1,5 @@
 import {useCallback, useRef, useState} from "react";
-import './scss/App.scss';
+import style from './css/App.module.css';
 import TodoTemplate from "./components/TodoTemplate";
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
