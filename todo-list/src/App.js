@@ -1,5 +1,4 @@
-import {useCallback, useRef, useState} from "react";
-import style from './css/App.module.css';
+import {useRef, useState} from "react";
 import TodoTemplate from "./components/TodoTemplate";
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
@@ -9,7 +8,7 @@ const App = () => {
 
     const nextId = useRef(0);
 
-    const onInsert = useCallback((text) => {
+    const onInsert = (text) => {
         const todo = {
             id:nextId.current,
             text,
@@ -17,20 +16,24 @@ const App = () => {
         };
         setTodos(todos.concat(todo));
         nextId.current += 1;
-    },[todos]);
+    };
 
-    const onRemove = useCallback((id) => {
+    const onRemove = (id) => {
         setTodos(todos.filter((todo) => todo.id !== id));
-    },[todos])
+    }
 
-    const onToggle = useCallback((id) => {
+    const onEdit = (id) => {
+        console.log(id);
+    }
+
+    const onToggle = (id) => {
         setTodos(todos.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)));
-    })
+    }
 
     return (
         <TodoTemplate>
             <TodoInsert onInsert={onInsert}/>
-            <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
+            <TodoList todos={todos} onRemove={onRemove} onEdit={onEdit} onToggle={onToggle}/>
         </TodoTemplate>
     )
 }

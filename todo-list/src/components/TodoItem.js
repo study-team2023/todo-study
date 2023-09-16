@@ -2,7 +2,7 @@ import { MdCheckBoxOutlineBlank, MdCheckBox, MdRemoveCircleOutline, MdOutlineMod
 import cn from "classnames";
 import style from "../css/TodoItem.module.css";
 
-const TodoItem = ({todo, onRemove, onToggle}) => {
+const TodoItem = ({todo, onRemove, onToggle, onEdit}) => {
     const { id, text, checked } = todo;
 
     return (
@@ -11,7 +11,7 @@ const TodoItem = ({todo, onRemove, onToggle}) => {
             {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
             <div className={style.text}>{text}</div>
           </div>
-          <div className={style.edit}><MdOutlineModeEdit /></div>
+          <div className={style.edit} onClick={() => onEdit(id)}><MdOutlineModeEdit /></div>
           <div className={style.remove} onClick={() => onRemove(id)}><MdRemoveCircleOutline /></div>
         </div>
       );
