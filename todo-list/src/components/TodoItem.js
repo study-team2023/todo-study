@@ -3,7 +3,7 @@ import { MdCheckBoxOutlineBlank, MdCheckBox, MdRemoveCircleOutline, MdOutlineMod
 import classNames from "classnames/bind";
 const cn  = classNames.bind(style);
 
-const TodoItem = ({todo, onRemove, onToggle, onClickEdit}) => {
+const TodoItem = ({todo, onRemove, onToggle, onClickEdit, onClickCancel}) => {
     const { id, text, checked, edit } = todo;
 
     return (
@@ -21,7 +21,7 @@ const TodoItem = ({todo, onRemove, onToggle, onClickEdit}) => {
             </div>
             <div className={cn("second")}>
                 <div id={`done${id}`} className={cn("done")}><MdDone /></div>
-                <div id={`cancel${id}`} className={cn("cancel")}><MdCancel /></div>
+                <div id={`cancel${id}`} className={cn("cancel")} onClick={(e) => onClickCancel(e,id)}><MdCancel /></div>
             </div>
           </div>
         </div>

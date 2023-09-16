@@ -30,6 +30,12 @@ const App = () => {
         setTodos(todos.map((todo) => (todo.id === id ? { ...todo, edit: !todo.edit } : todo)));
     }
 
+    const onClickCancel = (e, id) => {
+        let clickedInputEl =  document.getElementById(`todoInput${id}`);
+        clickedInputEl.readOnly = true;
+        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, edit: !todo.edit } : todo)));
+    }
+
     const onToggle = (id) => {
         setTodos(todos.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)));
     }
@@ -37,7 +43,7 @@ const App = () => {
     return (
         <TodoTemplate>
             <TodoInsert onInsert={onInsert}/>
-            <TodoList todos={todos} onRemove={onRemove} onClickEdit={onClickEdit} onToggle={onToggle}/>
+            <TodoList todos={todos} onRemove={onRemove} onClickEdit={onClickEdit} onClickCancel={onClickCancel} onToggle={onToggle}/>
         </TodoTemplate>
     )
 }
