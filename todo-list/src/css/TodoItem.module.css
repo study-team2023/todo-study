@@ -31,6 +31,7 @@
     flex: 1;
     color: #000;
     border: none;
+    cursor: default;
   }
   .TodoListItem .checkbox.checked svg {
     color: #22b8cf;
