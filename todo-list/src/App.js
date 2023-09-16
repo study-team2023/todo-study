@@ -13,6 +13,7 @@ const App = () => {
             id:nextId.current,
             text,
             checked: false,
+            edit: false,
         };
         setTodos(todos.concat(todo));
         nextId.current += 1;
@@ -22,8 +23,11 @@ const App = () => {
         setTodos(todos.filter((todo) => todo.id !== id));
     }
 
-    const onEdit = (id) => {
-        console.log(id);
+    const onClickEdit = (e, id) => {
+        let clickedInputEl =  document.getElementById(`todoInput${id}`);
+        let clickedBtnGroupEl =  document.getElementById(`btnGroup${id}`);
+        clickedInputEl.readOnly = false;
+        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, edit: !todo.edit } : todo)));
     }
 
     const onToggle = (id) => {
@@ -33,7 +37,7 @@ const App = () => {
     return (
         <TodoTemplate>
             <TodoInsert onInsert={onInsert}/>
-            <TodoList todos={todos} onRemove={onRemove} onEdit={onEdit} onToggle={onToggle}/>
+            <TodoList todos={todos} onRemove={onRemove} onClickEdit={onClickEdit} onToggle={onToggle}/>
         </TodoTemplate>
     )
 }

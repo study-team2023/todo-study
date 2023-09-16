@@ -19,15 +19,24 @@
   .TodoListItem svg {
     font-size: 1.5rem;
   }
-  .TodoListItem .text {
+  .TodoListItem .checkbox .text {
     margin-left: 0.5rem;
     flex: 1;
+    color: #000;
+    border-bottom: 2px solid #000;
+    max-width: 350px;
   }
-  .TodoListItem.checked svg {
+  .TodoListItem .checkbox .text:read-only {
+    margin-left: 0.5rem;
+    flex: 1;
+    color: #000;
+    border: none;
+  }
+  .TodoListItem .checkbox.checked svg {
     color: #22b8cf;
     
   }
-  .TodoListItem.checked .text {
+  .TodoListItem .checkbox.checked .text {
     color: #adb5bd;
     text-decoration: line-through;
   }
@@ -49,13 +58,59 @@
     font-size: 1.5rem;
     color: #7c6bff;
     cursor: pointer;
-    margin-right: 12px;
     transition: .2s;
   }
   .edit:hover {
     color: #000;
   }
+  .done {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #6bffba;
+    cursor: pointer;
+    transition: .2s;
+  }
+  .done:hover {
+    color: #000;
+  }
+  .cancel {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #ff6bee;
+    cursor: pointer;
+    transition: .2s;
+  }
+  .cancel:hover {
+    color: #000;
+  }
 
   .TodoListItem ~ .TodoListItem {
     border-top: 1px solid #dee2e6;
+  }
+
+  
+.btnGroup {
+  position: relative;
+}
+.btnGroup.edit .second {
+  display: flex;
+}
+.btnGroup.edit .first {
+  display: none;
+}
+  .btnGroup .first,
+  .btnGroup .second {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btnGroup .second {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: none;
   }
