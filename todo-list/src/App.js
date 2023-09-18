@@ -36,6 +36,10 @@ const App = () => {
         setTodos(todos.map((todo) => (todo.id === id ? { ...todo, edit: !todo.edit } : todo)));
     }
 
+    const onClickDone = (e, id, text) => {
+        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text: text } : todo)));
+    }
+
     const onToggle = (id) => {
         setTodos(todos.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)));
     }
@@ -43,7 +47,14 @@ const App = () => {
     return (
         <TodoTemplate>
             <TodoInsert onInsert={onInsert}/>
-            <TodoList todos={todos} onRemove={onRemove} onClickEdit={onClickEdit} onClickCancel={onClickCancel} onToggle={onToggle}/>
+            <TodoList 
+            todos={todos} 
+            onRemove={onRemove} 
+            onClickEdit={onClickEdit} 
+            onClickCancel={onClickCancel} 
+            onToggle={onToggle}
+            onClickDone={onClickDone}
+            />
         </TodoTemplate>
     )
 }
