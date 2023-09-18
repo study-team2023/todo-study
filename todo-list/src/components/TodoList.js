@@ -1,7 +1,7 @@
 import TodoItem from "./TodoItem";
 import style from "../css/TodoList.module.css";
 
-const TodoList = ({todos, onToggle, onRemove, onClickEdit, onClickCancel, onClickDone, onChangeInput}) => {
+const TodoList = ({todos, onToggle, onRemove, onClickEdit, onClickCancel, onClickDone}) => {
     return (
         <div className={style.TodoList}>
             {todos.map((todo) => (

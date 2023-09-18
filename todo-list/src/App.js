@@ -25,19 +25,18 @@ const App = () => {
 
     const onClickEdit = (e, id) => {
         let clickedInputEl =  document.getElementById(`todoInput${id}`);
-        let clickedBtnGroupEl =  document.getElementById(`btnGroup${id}`);
         clickedInputEl.readOnly = false;
         setTodos(todos.map((todo) => (todo.id === id ? { ...todo, edit: !todo.edit } : todo)));
     }
 
-    const onClickCancel = (e, id) => {
+    const onClickCancel = (e, id, text) => {
         let clickedInputEl =  document.getElementById(`todoInput${id}`);
-        clickedInputEl.readOnly = true;
         setTodos(todos.map((todo) => (todo.id === id ? { ...todo, edit: !todo.edit } : todo)));
+        clickedInputEl.readOnly = true;
     }
 
     const onClickDone = (e, id, text) => {
-        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text: text } : todo)));
+        setTodos(todos.map((todo) => (todo.id === id ? { ...todo, edit: !todo.edit, text: text} : todo)));
     }
 
     const onToggle = (id) => {
