@@ -22,9 +22,9 @@ const TodoHeader = () => {
                     <div className={cn("loginButtonWrap")}>
                         <button>로그인</button>
                     </div>
-                </div>
-                <div className={cn("joinButtonWrap")}>
-                    <Link to="./components/TodoJoin">회원가입</Link>
+                    <div className={cn("loginButtonWrap")}>
+                        <Link to="./components/TodoJoin">회원가입</Link>
+                    </div>
                 </div>
             </div>
         </header>
