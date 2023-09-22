@@ -12,16 +12,18 @@ const TodoHeader = () => {
                 <h1>TodoList</h1>
             </Link>
             <div className={cn("login_wrap")}>
-                <div className="login_box">
-                    <label htmlFor="loginEmail">
-                        <input id="loginEmail" type="email" placeholder="이메일"/>
-                    </label>
-                    <label htmlFor="loginPw">
-                        <input id="loginPw" type="password" placeholder="비밀번호"/>
-                    </label>
+                <div className={cn("login_box")}>
+                    <div className={cn("loginInputWrap")}>
+                        <input id="loginEmail" type="email" placeholder="이메일" className={cn("loginInput")}/>
+                    </div>
+                    <div className={cn("loginInputWrap")}>
+                        <input id="loginPw" type="password" placeholder="비밀번호" className={cn("loginInput")}/>
+                    </div>
+                    <div className={cn("loginButtonWrap")}>
+                        <button>로그인</button>
+                    </div>
                 </div>
-                <div className="button_box">
-                    <a href="">로그인</a>
+                <div className={cn("joinButtonWrap")}>
                     <Link to="./components/TodoJoin">회원가입</Link>
                 </div>
             </div>

@@ -66,7 +66,7 @@ const TodoJoin = () => {
                         <MdArrowBack color="#000" size="40"/>
                     </Link>
                 </div>
-                <h2 className={cn("joinTitle")}>회원가입을 진심으로<br/>환영합니다. 🥳</h2>
+                <h2 className={cn("joinTitle")}>TodoList에 오신것을<br/>진심으로 환영합니다. 🥳</h2>
                 <form className={cn("joinForm")}>
                     <label htmlFor="joinEmail">이메일</label>
                     <div className={cn("joinInputWrap")}>
