@@ -1,9 +1,11 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import TodoTemplate from "./components/TodoTemplate";
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
+import TodoHeader from "./components/TodoHeader";
 
 const App = () => {
+
     const [todos, setTodos] = useState([]);
 
     const nextId = useRef(0);
@@ -44,6 +46,8 @@ const App = () => {
     }
 
     return (
+        <>
+        <TodoHeader/>
         <TodoTemplate>
             <TodoInsert onInsert={onInsert}/>
             <TodoList 
@@ -55,6 +59,7 @@ const App = () => {
             onClickDone={onClickDone}
             />
         </TodoTemplate>
+        </>
     )
 }
 

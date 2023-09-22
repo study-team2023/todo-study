@@ -5,7 +5,7 @@
   }
 
 
-  input {
+  .TodoInsertInput {
     background: none;
     outline: none;
     border: none;
@@ -15,7 +15,7 @@
     color: white;
     flex: 1;
   }
-  input::placeholder {
+  .TodoInsertInput::placeholder {
     color: #dee2e6;
   }
   button {
