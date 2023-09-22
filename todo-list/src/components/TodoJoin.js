@@ -51,7 +51,7 @@ const TodoJoin = () => {
     }
 
     useEffect(() => {
-        if( pw === pwConfirm ){
+        if( pw === pwConfirm && pwConfirm.length > 0 ){
             setPwValidConfirm(true);
         }else {
             setPwValidConfirm(false);
@@ -86,7 +86,7 @@ const TodoJoin = () => {
                     </div>
                     <label htmlFor="joinPassword">비밀번호</label>
                     <div className={cn("joinInputWrap")}>
-                        <input id="joinPassword" 
+                        <input id="joinPassword" type="password" autocomplete="off"
                         placeholder="비밀번호를 입력하세요." 
                         value={pw} 
                         onChange={handlePw}
@@ -101,7 +101,7 @@ const TodoJoin = () => {
                     </div>
                     <label htmlFor="joinPassword">비밀번호 확인</label>
                     <div className={cn("joinInputWrap")}>
-                        <input id="joinPassword" 
+                        <input id="joinPassword" type="password" autocomplete="off"
                         placeholder="비밀번호를 다시 확인합니다." 
                         value={pwConfirm} 
                         onChange={handlePwConfirm}
