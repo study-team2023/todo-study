@@ -26,7 +26,7 @@ const TodoInsert = ({ onInsert }) => {
         <>
         <form className={style.TodoInsert} onSubmit={onInputSubmit}>
             <input placeholder="할 일을 입력하세요" className={style.TodoInsertInput} ref={todoInputFocus} value={value} onChange={onInputChange} />
-            <button type="submit">
+            <button type="submit" className={style.insertButton}>
                 <MdAdd/>
             </button>
         </form>

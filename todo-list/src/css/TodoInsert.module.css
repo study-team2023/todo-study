@@ -18,7 +18,7 @@
   .TodoInsertInput::placeholder {
     color: #dee2e6;
   }
-  button {
+  .insertButton {
     background: none;
     outline: none;
     border: none;
@@ -32,6 +32,6 @@
     cursor: pointer;
     transition: 0.1s background ease-in;
   }
-  button:hover {
+  .insertButton:hover {
     background: #adb5bd;
   }
