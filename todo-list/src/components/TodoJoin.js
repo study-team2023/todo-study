@@ -70,7 +70,7 @@ const TodoJoin = () => {
                 <form className={cn("joinForm")}>
                     <label htmlFor="joinEmail">이메일</label>
                     <div className={cn("joinInputWrap")}>
-                        <input id="joinEmail" 
+                        <input id="joinEmail"
                         placeholder="test@gmail.com" 
                         value={email} 
                         onChange={handleEmail}
