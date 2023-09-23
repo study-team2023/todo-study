@@ -98,7 +98,7 @@ const TodoJoin = () => {
                 <form className={cn("joinForm")} onSubmit={handleSubmit}>
                     <label htmlFor="joinEmail">이메일</label>
                     <div className={cn("joinInputWrap")}>
-                        <input id="joinEmail"
+                        <input id="joinEmail" autocomplete="off"
                         placeholder="test@gmail.com" 
                         value={email} 
                         onChange={handleEmail}
@@ -127,9 +127,9 @@ const TodoJoin = () => {
                             )
                         }
                     </div>
-                    <label htmlFor="joinPassword">비밀번호 확인</label>
+                    <label htmlFor="joinPasswordConfirm">비밀번호 확인</label>
                     <div className={cn("joinInputWrap")}>
-                        <input id="joinPassword" type="password" autocomplete="off"
+                        <input id="joinPasswordConfirm" type="password" autocomplete="off"
                         placeholder="비밀번호를 다시 확인합니다." 
                         value={pwConfirm} 
                         onChange={handlePwConfirm}
