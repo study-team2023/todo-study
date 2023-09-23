@@ -13,13 +13,15 @@ const TodoJoin = () => {
     const [pwValid, setPwValid] = useState(false);
     const [pwValidConfirm, setPwValidConfirm] = useState(false);
     const [notAllow, setNotAllow] = useState(true);
+    const USER_REGEX =
+      /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+    const PW_REGEX =
+    /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
-        const regex =
-          /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
 
-        if(regex.test(email)) {
+        if(USER_REGEX.test(email)) {
             setEmailValid(true);
         } else {
             setEmailValid(false);
@@ -28,10 +30,8 @@ const TodoJoin = () => {
 
     const handlePw = (e) => {
         setPw(e.target.value);
-        const regex =
-          /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
         
-        if(regex.test(pw)) {
+        if(PW_REGEX.test(pw)) {
             setPwValid(true);
         }else {
             setPwValid(false);
