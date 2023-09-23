@@ -3,6 +3,7 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import {MdArrowBack} from "react-icons/md";
 import { useEffect, useState } from "react";
+import axios from "axios";
 const cn  = classNames.bind(style);
 
 const TodoJoin = () => {
@@ -13,6 +14,7 @@ const TodoJoin = () => {
     const [pwValid, setPwValid] = useState(false);
     const [pwValidConfirm, setPwValidConfirm] = useState(false);
     const [notAllow, setNotAllow] = useState(true);
+    const [success, setSuccess] = useState(false);
     const USER_REGEX =
       /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     const PW_REGEX =
@@ -58,6 +60,32 @@ const TodoJoin = () => {
         }
     },[pwConfirm, pw])
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        // 혹시라도 오류로 버튼이 활성화 되었을때, 한번더 체크하여 잘못된 정보라면 return
+        const v1 = USER_REGEX.test(email);
+        const v2 = PW_REGEX.test(pw);
+        if( !v1 || !v2 ){
+            alert("잘못된 접근입니다. 다시 시도해 주세요.")
+            return;
+        }
+
+        try {
+            // API 엔드포인트 URL
+            const apiUrl = 'https://port-0-todo-study-backend-iciy2almpz5uyx.sel5.cloudtype.app/auth/register';
+      
+            // POST 요청으로 사용자 정보를 서버에 전송
+            const response = await axios.post(apiUrl, email, pw);
+      
+            // 응답 처리
+            console.log('등록 성공:', response.data);
+            setSuccess(true);
+          } catch (error) {
+            // 오류 처리
+            console.error('등록 실패:', error);
+          }
+    }
+
     return (
         <div className={cn("joinPageWrap")}>
             <div className={cn("joinFlexWrap")}>
@@ -67,7 +95,7 @@ const TodoJoin = () => {
                     </Link>
                 </div>
                 <h2 className={cn("joinTitle")}>TodoList에 오신것을<br/>진심으로 환영합니다. 🥳</h2>
-                <form className={cn("joinForm")}>
+                <form className={cn("joinForm")} onSubmit={handleSubmit}>
                     <label htmlFor="joinEmail">이메일</label>
                     <div className={cn("joinInputWrap")}>
                         <input id="joinEmail"
@@ -115,7 +143,7 @@ const TodoJoin = () => {
                         }
                     </div>
                     <div className={cn("joinButtonWrap")}>
-                        <button type="button" disabled={notAllow}>완료</button>
+                        <button type="submit" disabled={notAllow}>완료</button>
                     </div>
                 </form>
             </div>
