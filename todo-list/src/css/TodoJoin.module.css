@@ -14,13 +14,14 @@
     margin-bottom: 50px;
 }
 
-.joinForm label {
+.joinForm .joinLabel {
     position: relative;
     display: inline-block;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.joinForm label::after {
+.joinForm .joinLabel::after {
     content: "*";
     display: inline-block;
     color: red;
@@ -31,7 +32,7 @@
     transform: translateY(-50%);
 }
 
-.joinForm label ~ label {
+.joinForm .joinLabel ~ .joinLabel {
     margin-top: 20px;
 }
 

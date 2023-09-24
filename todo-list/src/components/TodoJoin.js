@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import {MdArrowBack} from "react-icons/md";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 const cn  = classNames.bind(style);
 
 const TodoJoin = () => {
     const [email, setEmail] = useState("");
     const [pw, setPw ] = useState("");
+    const [username, setUsername] = useState("");
     const [pwConfirm, setPwConfirm] = useState("");
     const [emailValid, setEmailValid] = useState(false);
     const [pwValid, setPwValid] = useState(false);
@@ -19,6 +21,10 @@ const TodoJoin = () => {
       /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     const PW_REGEX =
     /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+
+    const handleUsername = (e) => {
+        setUsername(e.target.value);
+    }
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -41,12 +47,12 @@ const TodoJoin = () => {
     }
 
     useEffect(() => {
-        if(emailValid && pwValid && pwValidConfirm) {
+        if(emailValid && pwValid && pwValidConfirm && username.length > 0) {
             setNotAllow(false);
             return
         }
         setNotAllow(true);
-    },[emailValid, pwValid, pwValidConfirm])
+    },[emailValid, pwValid, pwValidConfirm, username])
 
     const handlePwConfirm = (e) => {
         setPwConfirm(e.target.value);
@@ -71,19 +77,25 @@ const TodoJoin = () => {
         }
 
         try {
-            // API 엔드포인트 URL
-            const apiUrl = 'https://port-0-todo-study-backend-iciy2almpz5uyx.sel5.cloudtype.app/auth/register';
       
             // POST 요청으로 사용자 정보를 서버에 전송
-            const response = await axios.post(apiUrl, email, pw);
+            // const response = await axios.post(REGISTER_URL, username, email, pw);
+            const response = await axios.post(
+                "https: //port-0-todo-study-backend-iciy2almpz5uyx.sel5.cloudtype.app/auth/register", 
+                {username:username, email:email, password:pw},
+                {
+                    headers: {"Content-Type": "application/json"},
+                }
+            ); 
       
             // 응답 처리
             console.log('등록 성공:', response.data);
+            console.log('토큰', response.accessToken);
+            console.log('JOSN', JSON.stringify(response));
             setSuccess(true);
           } catch (error) {
-            // 오류 처리
-            console.error('등록 실패:', error);
-          }
+            console.log('등록 실패:', error);
+        }
     }
 
     return (
@@ -96,9 +108,18 @@ const TodoJoin = () => {
                 </div>
                 <h2 className={cn("joinTitle")}>TodoList에 오신것을<br/>진심으로 환영합니다. 🥳</h2>
                 <form className={cn("joinForm")} onSubmit={handleSubmit}>
-                    <label htmlFor="joinEmail">이메일</label>
+                    <label htmlFor="joinUsername" className={cn("joinLabel")}>이름/별명</label>
                     <div className={cn("joinInputWrap")}>
-                        <input id="joinEmail" autocomplete="off"
+                        <input id="joinUsername" type="text" autoComplete="off"
+                        placeholder="이름 및 별명 설정해주세요." 
+                        value={username} 
+                        onChange={handleUsername}
+                        required
+                        />
+                    </div>
+                    <label htmlFor="joinEmail" className={cn("joinLabel")}>이메일</label>
+                    <div className={cn("joinInputWrap")}>
+                        <input id="joinEmail" type="text" autoComplete="off"
                         placeholder="test@gmail.com" 
                         value={email} 
                         onChange={handleEmail}
@@ -112,13 +133,13 @@ const TodoJoin = () => {
                             )
                         }
                     </div>
-                    <label htmlFor="joinPassword">비밀번호</label>
+                    <label htmlFor="joinPassword" className={cn("joinLabel")}>비밀번호</label>
                     <div className={cn("joinInputWrap")}>
-                        <input id="joinPassword" type="password" autocomplete="off"
+                        <input id="joinPassword" type="password" autoComplete="off"
                         placeholder="비밀번호를 입력하세요." 
                         value={pw} 
                         onChange={handlePw}
-                        equired/>
+                        required/>
                     </div>
                     <div className={cn("joinErrorMsg")}>
                         {
@@ -127,9 +148,9 @@ const TodoJoin = () => {
                             )
                         }
                     </div>
-                    <label htmlFor="joinPasswordConfirm">비밀번호 확인</label>
+                    <label htmlFor="joinPasswordConfirm" className={cn("joinLabel")}>비밀번호 확인</label>
                     <div className={cn("joinInputWrap")}>
-                        <input id="joinPasswordConfirm" type="password" autocomplete="off"
+                        <input id="joinPasswordConfirm" type="password" autoComplete="off"
                         placeholder="비밀번호를 다시 확인합니다." 
                         value={pwConfirm} 
                         onChange={handlePwConfirm}
