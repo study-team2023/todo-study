@@ -81,7 +81,7 @@ const TodoJoin = () => {
             // POST 요청으로 사용자 정보를 서버에 전송
             // const response = await axios.post(REGISTER_URL, username, email, pw);
             const response = await axios.post(
-                "https: //port-0-todo-study-backend-iciy2almpz5uyx.sel5.cloudtype.app/auth/register", 
+                "https://port-0-todo-study-backend-iciy2almpz5uyx.sel5.cloudtype.app/auth/register", 
                 {username:username, email:email, password:pw},
                 {
                     headers: {"Content-Type": "application/json"},
