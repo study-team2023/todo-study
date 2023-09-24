@@ -50,6 +50,7 @@
     color: #ff6b6b;
     cursor: pointer;
     transition: .2s;
+    min-width: 30px;
   }
   .remove:hover {
     color: #000;
@@ -61,6 +62,7 @@
     color: #7c6bff;
     cursor: pointer;
     transition: .2s;
+    min-width: 30px;
   }
   .edit:hover {
     color: #000;
@@ -72,6 +74,7 @@
     color: #6bffba;
     cursor: pointer;
     transition: .2s;
+    min-width: 30px;
   }
   .done:hover {
     color: #000;
@@ -83,6 +86,7 @@
     color: #ff6bee;
     cursor: pointer;
     transition: .2s;
+    min-width: 30px;
   }
   .cancel:hover {
     color: #000;
