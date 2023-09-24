@@ -101,16 +101,16 @@ const TodoJoin = () => {
     return (
         <div className={cn("joinPageWrap")}>
             <div className={cn("joinFlexWrap")}>
-                <div className={cn("goBack")}>
-                    <Link to="/">
-                        <MdArrowBack color="#000" size="40"/>
-                    </Link>
-                </div>
                 {
                     success === true ? (
                         <h2 className={cn("joinTitle")}>회원가입 성공!<br/>로그인하고 시작해 보세요 ✨</h2>
                     ) : (
                         <>
+                        <div className={cn("goBack")}>
+                            <Link to="/">
+                                <MdArrowBack color="#000" size="40"/>
+                            </Link>
+                        </div>
                         <h2 className={cn("joinTitle")}>TodoList에 오신것을<br/>진심으로 환영합니다. 🥳</h2>
                         <form className={cn("joinForm")} onSubmit={handleSubmit}>
                             <label htmlFor="joinUsername" className={cn("joinLabel")}>이름/별명</label>
