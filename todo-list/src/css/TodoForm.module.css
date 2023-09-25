@@ -1,0 +1,93 @@
+
+.formPageWrap {
+    display: flex;
+    justify-content: center;
+}
+
+.formFlexWrap {
+    width: 100%;
+    max-width: 600px;
+}
+
+.formTitle {
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+
+.formAreaWrap .formAreaLabel {
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.formAreaWrap .formAreaLabel::after {
+    content: "*";
+    display: inline-block;
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.formAreaWrap .formAreaLabel ~ .formAreaLabel {
+    margin-top: 20px;
+}
+
+.formInputWrap {
+    display: block;
+    width: 100%;
+    height: 52px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 12px;
+}
+
+.formInputWrap input {
+    height: 100%;
+    width: 100%;
+    display: block;
+    outline: none;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+}
+
+.formErrorMsg {
+    font-size: 14px;
+    color: red;
+    margin: 12px 0 0;
+}
+
+.formErrorMsg p {
+    margin: 0;
+}
+
+.formButtonWrap {
+    width: 100%;
+    height: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 28px;
+    overflow: hidden;
+}
+
+.formButtonWrap button {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    background: navy;
+}
+
+.formButtonWrap button:disabled {
+    background: rgb(219, 219, 219);
+    cursor: default;
+}

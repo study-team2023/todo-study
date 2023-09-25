@@ -33,7 +33,7 @@
     border: 0;
 }
 
-.loginButtonWrap {
+.headerButtonWrap {
     max-width: 100px;
     width: 100%;
     height: 30px;
@@ -46,7 +46,7 @@
     overflow: hidden;
 }
 
-.loginButtonWrap button {
+.headerButtonWrap.join {
     width: 100%;
     height: 100%;
     background: navy;
