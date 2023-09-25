@@ -19,6 +19,14 @@ const TodoLogin = () => {
     const handlePw = (e) => {
         setPw(e.target.value);
     }
+    
+    useEffect(() => {
+        if( email.length > 0 && pw.length > 0){
+            setNotAllow(false);
+        }else {
+            setNotAllow(true);
+        }
+    },[email, pw])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,14 +36,6 @@ const TodoLogin = () => {
             return;
         }
     }
-    
-    useEffect(() => {
-        if( email.length > 0 && pw.length > 0){
-            setNotAllow(false);
-        }else {
-            setNotAllow(true);
-        }
-    },[email, pw])
 
     return (
         <>
