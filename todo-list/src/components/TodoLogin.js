@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import {login, logout } from "../store/loginReducer";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios"; 
 
 const cn  = classNames.bind(style);
@@ -12,6 +14,7 @@ const cn  = classNames.bind(style);
 const TodoLogin = () => {
     const isLoggedIn = useSelector((state) => state.isLoggedIn);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [pw, setPw ] = useState("");
@@ -51,6 +54,7 @@ const TodoLogin = () => {
             // 로그인 성공 처리
             console.log('로그인 성공:', response.data);
             dispatch(login());
+            navigate("/");
       
             // 로그인 후에 다른 작업 수행 가능
           } catch (error) {
@@ -61,11 +65,6 @@ const TodoLogin = () => {
 
     return (
         <>
-        {
-            isLoggedIn && (
-                <p>로그인 성공</p>
-            )
-        }
         <div className={cn("formPageWrap")}>
             <div className={cn("formFlexWrap")}>
                 <div className={cn("goBack")}>
