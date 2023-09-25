@@ -3,11 +3,16 @@ import {MdArrowBack} from "react-icons/md";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import {login, logout } from "../store/loginReducer";
 import axios from "axios"; 
 
 const cn  = classNames.bind(style);
 
 const TodoLogin = () => {
+    const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState("");
     const [pw, setPw ] = useState("");
     const [notAllow, setNotAllow] = useState(true);
@@ -28,17 +33,39 @@ const TodoLogin = () => {
         }
     },[email, pw])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // 혹시라도 어떤 오류로 인해 인풋에 값이 없는데 버튼 활성화 될 경우 한번더 return
         if( email.length <= 0 || pw.length <= 0 ){
             alert("이메일 혹은 비밀번호를 입력해 주세요.")
             return;
         }
+        try {
+            const apiUrl = 'https://port-0-todo-study-backend-iciy2almpz5uyx.sel5.cloudtype.app/auth/login';
+      
+            const response = await axios.post(apiUrl, {
+              email: email,
+              password: pw,
+            });
+      
+            // 로그인 성공 처리
+            console.log('로그인 성공:', response.data);
+            dispatch(login());
+      
+            // 로그인 후에 다른 작업 수행 가능
+          } catch (error) {
+            // 로그인 실패 처리
+            console.error('로그인 실패:', error);
+          }
     }
 
     return (
         <>
+        {
+            isLoggedIn && (
+                <p>로그인 성공</p>
+            )
+        }
         <div className={cn("formPageWrap")}>
             <div className={cn("formFlexWrap")}>
                 <div className={cn("goBack")}>
