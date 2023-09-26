@@ -2,23 +2,34 @@ import style from "../css/TodoForm.module.css";
 import {MdArrowBack} from "react-icons/md";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import {login, logout } from "../store/loginReducer";
-import { useNavigate } from "react-router-dom";
-
-import axios from "axios"; 
+import { useEffect, useState, useContext, useRef } from "react";
+import AuthContext from "../context/AuthProvider";
+import axios from "../api/axios";
 
 const cn  = classNames.bind(style);
+const LOGIN_URL = "/auth/login";
 
 const TodoLogin = () => {
-    const isLoggedIn = useSelector((state) => state.isLoggedIn);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const isLoggedIn = useSelector((state) => state.isLoggedIn);
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    const { setAuth } = useContext(AuthContext);
 
+    const userRef = useRef();
+    const errRef = useRef();
     const [email, setEmail] = useState("");
     const [pw, setPw ] = useState("");
     const [notAllow, setNotAllow] = useState(true);
+    const [success, setSuccess] = useState(false);
+    const [errMsg, setErrMsg] = useState("");
+
+    useEffect(() => {
+        userRef.current.focus();
+    }, []);
+
+    useEffect(() => {
+        setErrMsg("");
+    }, [email, pw]);
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -40,27 +51,39 @@ const TodoLogin = () => {
         e.preventDefault();
         // 혹시라도 어떤 오류로 인해 인풋에 값이 없는데 버튼 활성화 될 경우 한번더 return
         if( email.length <= 0 || pw.length <= 0 ){
-            alert("이메일 혹은 비밀번호를 입력해 주세요.")
+            setErrMsg("이메일 혹은 비밀번호를 입력해 주세요.")
             return;
         }
+        
         try {
-            const apiUrl = 'https://port-0-todo-study-backend-iciy2almpz5uyx.sel5.cloudtype.app/auth/login';
-      
-            const response = await axios.post(apiUrl, {
-              email: email,
-              password: pw,
-            });
-      
-            // 로그인 성공 처리
-            console.log('로그인 성공:', response.data);
-            dispatch(login());
-            navigate("/");
-      
-            // 로그인 후에 다른 작업 수행 가능
-          } catch (error) {
-            // 로그인 실패 처리
-            console.error('로그인 실패:', error);
-          }
+            const response = await axios.post(LOGIN_URL, 
+                JSON.stringify({email, password:pw}),
+                {
+                    headers: {"Content-Type" : "application/json"},
+                    withCredentials: true,
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            const accessToken = response?.data?.accessToken;
+            const roles = response?.data?.roles;
+            setAuth({ email, pw, roles, accessToken });
+            setEmail("");
+            setPw("");
+            setSuccess(true);
+
+        } catch(err) {
+            if(!err?.response) {
+                setErrMsg("서버가 응답하지 않습니다.");
+            }else if(err.response?.status === 400) {
+                setErrMsg("이메일과 비밀번호를 다시 확인해 주세요.")
+            }else if(err.response?.status === 401) {
+                setErrMsg("권한이 없습니다.")
+            }else {
+                setErrMsg("로그인에 실패하였습니다.")
+            }
+            errRef.current.focus();
+            console.log(err)
+        }
     }
 
     return (
@@ -73,6 +96,10 @@ const TodoLogin = () => {
                     </Link>
                 </div>
                 <h2 className={cn("formTitle")}>로그인을 통해 TodoList를<br/>활용해 보세요 🤓</h2>
+                {/* <div ref={errRef} className={`${errMsg ? "" : cn("hide")}`}> */}
+                <div ref={errRef} className={cn("formErrMsgWrap") + (errMsg ? "" : cn("hide"))}>
+                    <p className={cn("formErrMsg")} aria-live="assertive">{errMsg}</p>
+                </div>
                 <form className={cn("formAreaWrap")} onSubmit={handleSubmit}>
                     <label htmlFor="loginEmail" className={cn("formAreaLabel")}>이메일</label>
                     <div className={cn("formInputWrap")}>
@@ -81,6 +108,7 @@ const TodoLogin = () => {
                         required
                         value={email}
                         onChange={handleEmail}
+                        ref={userRef}
                         />
                     </div>
                     <label htmlFor="loginPw" className={cn("formAreaLabel")}>비밀번호</label>

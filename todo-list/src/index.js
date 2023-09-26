@@ -8,18 +8,17 @@ import {createStore} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import loginReducer from './store/loginReducer';
 import { Provider } from 'react-redux';
-
-const store = createStore(loginReducer, composeWithDevTools())
+import { AuthProvider } from './context/AuthProvider';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <AuthProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </Provider>
+    </AuthProvider>
   </React.StrictMode>
 );
 
