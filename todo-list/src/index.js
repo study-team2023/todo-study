@@ -4,10 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {createStore} from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import loginReducer from './store/loginReducer';
-import { Provider } from 'react-redux';
 import { AuthProvider } from './context/AuthProvider';
 
 
