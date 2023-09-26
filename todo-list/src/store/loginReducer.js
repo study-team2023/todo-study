@@ -8,7 +8,7 @@ const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
 
 export const login = () => ({type:LOGIN})
-export const join = () => ({type:LOGOUT})
+export const logout = () => ({type:LOGOUT})
 
 // action 지정
 const loginReducer = (state = initialState, action) => {
