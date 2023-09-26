@@ -1,7 +1,7 @@
 import style from "../css/TodoForm.module.css";
 import {MdArrowBack} from "react-icons/md";
 import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
@@ -15,12 +15,15 @@ const TodoLogin = () => {
     // const navigate = useNavigate();
     const { setAuth } = useAuth();
 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
     const userRef = useRef();
     const errRef = useRef();
     const [email, setEmail] = useState("");
     const [pw, setPw ] = useState("");
     const [notAllow, setNotAllow] = useState(true);
-    const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState("");
 
     useEffect(() => {
@@ -69,7 +72,7 @@ const TodoLogin = () => {
             setAuth({ email, pw, roles, accessToken });
             setEmail("");
             setPw("");
-            setSuccess(true);
+            navigate(from, {replace: true});
 
         } catch(err) {
             if(!err?.response) {
