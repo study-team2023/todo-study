@@ -77,7 +77,7 @@ const TodoLogin = () => {
             }else if(err.response?.status === 400) {
                 setErrMsg("이메일과 비밀번호를 다시 확인해 주세요.")
             }else if(err.response?.status === 401) {
-                setErrMsg("권한이 없습니다.")
+                setErrMsg("권한이 없거나, 존재하지 않는 회원입니다.")
             }else {
                 setErrMsg("로그인에 실패하였습니다.")
             }
