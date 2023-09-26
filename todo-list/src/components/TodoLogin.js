@@ -2,9 +2,9 @@ import style from "../css/TodoForm.module.css";
 import {MdArrowBack} from "react-icons/md";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useContext, useRef } from "react";
-import AuthContext from "../context/AuthProvider";
+import { useEffect, useState, useRef } from "react";
 import axios from "../api/axios";
+import useAuth from "../hooks/useAuth";
 
 const cn  = classNames.bind(style);
 const LOGIN_URL = "/auth/login";
@@ -13,7 +13,7 @@ const TodoLogin = () => {
     // const isLoggedIn = useSelector((state) => state.isLoggedIn);
     // const dispatch = useDispatch();
     // const navigate = useNavigate();
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useAuth();
 
     const userRef = useRef();
     const errRef = useRef();

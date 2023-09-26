@@ -7,6 +7,7 @@ import TodoJoin from './components/TodoJoin';
 import TodoLogin from './components/TodoLogin';
 import "./css/reset.css";
 import TodoLayout from './components/TodoLayout';
+import ToodRequireAuth from './components/TodoRequireAuth';
 
 const App = () => {
 
@@ -17,9 +18,13 @@ const App = () => {
         <Routes>
             <Route path='/' element={<TodoLayout/>}>
                 {/* public routes */}
-                <Route path='/components/TodoJoin' element={<TodoJoin/>}></Route>
-                <Route path='/components/TodoLogin' element={<TodoLogin/>}></Route>
+                <Route path='/components/TodoJoin' element={<TodoJoin/>}/>
+                <Route path='/components/TodoLogin' element={<TodoLogin/>}/>
                 {/* private routes (admin page) */}
+                <Route element={<ToodRequireAuth/>}>
+                    {/* put private routes here */}
+                    <Route path='/' element={<TodoHome/>}/>
+                </Route>
                 {/* catch all */}
             </Route>
         </Routes>
