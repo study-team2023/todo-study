@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
-import axios from 'axios';
 import style from "../css/TodoHeader.module.css";
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
-import { logout } from "../store/loginReducer";
 
 const cn = classNames.bind(style);
 
