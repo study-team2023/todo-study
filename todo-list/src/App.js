@@ -24,7 +24,6 @@ const App = () => {
                     <Route path='/' element={<TodoHome/>}/>
                 </Route>
                 {/* public routes */}
-                <Route path='/' element={<TodoMain/>}/>
                 {/* catch all */}
             </Route>
         </Routes>
