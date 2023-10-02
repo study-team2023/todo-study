@@ -8,7 +8,7 @@ const ToodRequireAuth = () => {
     return (
         auth?.email
             ? <Outlet/>
-            : <Navigate to="/TodoLogin" state={{ from: location }} replace />
+            : <Navigate to="./components/TodoLogin" state={{ from: location }} replace />
     );
 }
 

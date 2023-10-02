@@ -16,9 +16,7 @@ const App = () => {
         <>
         <TodoHeader/>
         <Routes>
-            <Route element={<TodoLayout/>}>
-                {/* public routes */}
-                <Route path='/' element={<TodoMain/>}/>
+            <Route path='/' element={<TodoLayout/>}>
                 <Route path='/components/TodoJoin' element={<TodoJoin/>}/>
                 <Route path='/components/TodoLogin' element={<TodoLogin/>}/>
                 {/* private routes (admin page) */}
@@ -26,6 +24,8 @@ const App = () => {
                     {/* put private routes here */}
                     <Route path='/' element={<TodoHome/>}/>
                 </Route>
+                {/* public routes */}
+                <Route path='/' element={<TodoMain/>}/>
                 {/* catch all */}
             </Route>
         </Routes>
