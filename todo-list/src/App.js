@@ -8,7 +8,6 @@ import TodoLogin from './components/TodoLogin';
 import "./css/reset.css";
 import TodoLayout from './components/TodoLayout';
 import ToodRequireAuth from './components/TodoRequireAuth';
-import TodoMain from './components/TodoMain';
 
 const App = () => {
 
