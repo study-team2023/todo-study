@@ -93,11 +93,11 @@ const TodoLogin = () => {
         <>
         <div className={cn("formPageWrap")}>
             <div className={cn("formFlexWrap")}>
-                <div className={cn("goBack")}>
+                {/* <div className={cn("goBack")}>
                     <Link to="/">
                         <MdArrowBack color="#000" size="40"/>
                     </Link>
-                </div>
+                </div> */}
                 <h2 className={cn("formTitle")}>로그인을 통해 TodoList를<br/>활용해 보세요 🤓</h2>
                 {/* <div ref={errRef} className={`${errMsg ? "" : cn("hide")}`}> */}
                 <div ref={errRef} className={cn("formErrMsgWrap") + (errMsg ? "" : cn("hide"))}>

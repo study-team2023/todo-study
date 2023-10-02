@@ -85,11 +85,11 @@ const TodoJoin = () => {
                         <h2 className={cn("formTitle")}>회원가입 성공!<br/>로그인하고 시작해 보세요 ✨</h2>
                     ) : (
                         <>
-                        <div className={cn("goBack")}>
+                        {/* <div className={cn("goBack")}>
                             <Link to="/">
                                 <MdArrowBack color="#000" size="40"/>
                             </Link>
-                        </div>
+                        </div> */}
                         <h2 className={cn("formTitle")}>TodoList에 오신것을<br/>진심으로 환영합니다. 🥳</h2>
                         <form className={cn("formAreaWrap")} onSubmit={handleSubmit}>
                             <label htmlFor="joinUsername" className={cn("formAreaLabel")}>이름/별명</label>
