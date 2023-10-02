@@ -8,16 +8,17 @@ import TodoLogin from './components/TodoLogin';
 import "./css/reset.css";
 import TodoLayout from './components/TodoLayout';
 import ToodRequireAuth from './components/TodoRequireAuth';
+import TodoMain from './components/TodoMain';
 
 const App = () => {
 
     return (
         <>
         <TodoHeader/>
-        
         <Routes>
-            <Route path='/' element={<TodoLayout/>}>
+            <Route element={<TodoLayout/>}>
                 {/* public routes */}
+                <Route path='/' element={<TodoMain/>}/>
                 <Route path='/components/TodoJoin' element={<TodoJoin/>}/>
                 <Route path='/components/TodoLogin' element={<TodoLogin/>}/>
                 {/* private routes (admin page) */}
