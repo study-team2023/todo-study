@@ -3,7 +3,7 @@ import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import {MdArrowBack} from "react-icons/md";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 
 const cn  = classNames.bind(style);
 
@@ -74,6 +74,28 @@ const TodoJoin = () => {
         if( !v1 || !v2 ){
             alert("잘못된 접근입니다. 다시 시도해 주세요.")
             return;
+        }
+
+        try {
+      
+            // POST 요청으로 사용자 정보를 서버에 전송
+            // const response = await axios.post(REGISTER_URL, username, email, pw);
+            const response = await axios.post(
+                "auth/register", 
+                {username:username, email:email, password:pw},
+                {
+                    headers: {"Content-Type": "application/json"},
+                    withCredentials: true,
+                }
+            ); 
+      
+            // 응답 처리
+            console.log('등록 성공:', response.data);
+            console.log('토큰', response.accessToken);
+            console.log('JOSN', JSON.stringify(response));
+            setSuccess(true);
+          } catch (error) {
+            console.log('등록 실패:', error);
         }
     }
 

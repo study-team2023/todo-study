@@ -7,7 +7,6 @@ import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
 
 const cn  = classNames.bind(style);
-const LOGIN_URL = "/auth/login";
 
 const TodoLogin = () => {
     // const isLoggedIn = useSelector((state) => state.isLoggedIn);
@@ -59,7 +58,7 @@ const TodoLogin = () => {
         }
         
         try {
-            const response = await axios.post(LOGIN_URL, 
+            const response = await axios.post("auth/login", 
                 JSON.stringify({email, password:pw}),
                 {
                     headers: {"Content-Type" : "application/json"},
