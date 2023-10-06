@@ -5,6 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
+import { useDispatch } from "react-redux";
 
 const cn  = classNames.bind(style);
 
@@ -13,6 +14,7 @@ const TodoLogin = () => {
     // const dispatch = useDispatch();
     // const navigate = useNavigate();
     const { setAuth } = useAuth();
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -61,16 +63,24 @@ const TodoLogin = () => {
             const response = await axios.post("auth/login", 
                 {email, password:pw},
                 {
-                    // headers: {"Content-Type" : "application/json"},
+                    headers: {
+                        Authorization:`Bearer ${sessionStorage.getItem("userToken")}`,
+
+                    },
                     withCredentials: true,
                 }
             );
-            console.log(response.data);
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
-            setAuth({ email, pw, roles, accessToken });
+            
+            console.log(JSON.stringify(response.data));
+            const accessToken = response.data?.access_token;
+            setAuth({ email, pw, accessToken });
+            sessionStorage.setItem("userToken", response.data.access_token);
             setEmail("");
             setPw("");
+            dispatch({
+                type: "LOGIN",
+            });
+            
             navigate(from, {replace: true});
 
         } catch(err) {
