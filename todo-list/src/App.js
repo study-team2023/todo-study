@@ -18,7 +18,7 @@ const App = () => {
             <Route path='/' element={<TodoLayout/>}>
                 <Route path='/components/TodoJoin' element={<TodoJoin/>}/>
                 <Route path='/components/TodoLogin' element={<TodoLogin/>}/>
-                {/* private routes (admin page) */}
+                {/* put private routes here */}
                 <Route element={<ToodRequireAuth/>}>
                     {/* put private routes here */}
                     <Route path='/' element={<TodoHome/>}/>
