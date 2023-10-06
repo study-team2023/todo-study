@@ -59,13 +59,13 @@ const TodoLogin = () => {
         
         try {
             const response = await axios.post("auth/login", 
-                JSON.stringify({email, password:pw}),
+                {email, password:pw},
                 {
-                    headers: {"Content-Type" : "application/json"},
+                    // headers: {"Content-Type" : "application/json"},
                     withCredentials: true,
                 }
             );
-            console.log(JSON.stringify(response?.data));
+            console.log(response.data);
             const accessToken = response?.data?.accessToken;
             const roles = response?.data?.roles;
             setAuth({ email, pw, roles, accessToken });

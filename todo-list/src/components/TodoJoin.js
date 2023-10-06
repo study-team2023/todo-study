@@ -85,7 +85,6 @@ const TodoJoin = () => {
                 {username:username, email:email, password:pw},
                 {
                     headers: {"Content-Type": "application/json"},
-                    withCredentials: true,
                 }
             ); 
       
